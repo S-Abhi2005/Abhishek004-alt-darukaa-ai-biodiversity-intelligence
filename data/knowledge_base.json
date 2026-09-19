@@ -1,0 +1,126 @@
+{
+  "version": "2.4.0",
+  "project": "Darukaa Earth Environmental Intelligence",
+  "causal_graph": {
+    "nodes": [
+      { "id": "zero_till", "label": "Zero Tillage & Mulch Cover", "type": "intervention" },
+      { "id": "contour_hedges", "label": "Contour Agroforestry Hedges", "type": "intervention" },
+      { "id": "halophytic_trees", "label": "Halophytic Biodrainage Trees", "type": "intervention" },
+      { "id": "riparian_strips", "label": "Multi-tier Riparian Strips", "type": "intervention" },
+      { "id": "biochar_amend", "label": "Activated Biochar Amendment", "type": "intervention" },
+      { "id": "pollinator_corridors", "label": "Native Pollinator Corridors", "type": "intervention" },
+      { "id": "macro_aggregates", "label": "Soil Macro-Aggregate Stability", "type": "biogeochemical_intermediate" },
+      { "id": "hydraulic_conductivity", "label": "Saturated Infiltration Rate (Ksat)", "type": "biogeochemical_intermediate" },
+      { "id": "water_table_depth", "label": "Water Table Depth Below Root Zone", "type": "biogeochemical_intermediate" },
+      { "id": "rhizosphere_mycorrhizae", "label": "Arbuscular Mycorrhizal Fungi & CEC", "type": "biogeochemical_intermediate" },
+      { "id": "denitrification_rate", "label": "Anaerobic Denitrification Rate", "type": "biogeochemical_intermediate" },
+      { "id": "predator_abundance", "label": "Predatory Arthropod Population", "type": "biogeochemical_intermediate" },
+      { "id": "soc_stock", "label": "Soil Organic Carbon Stock (SOC)", "type": "outcome" },
+      { "id": "erosion_loss", "label": "Runoff Topsoil Loss", "type": "outcome" },
+      { "id": "salinity_stress", "label": "Root-Zone Saline Osmotic Stress", "type": "outcome" },
+      { "id": "pesticide_runoff", "label": "Aquatic Agrochemical Pollution", "type": "outcome" },
+      { "id": "crop_resilience", "label": "Drought & Heat Stress Resilience", "type": "outcome" },
+      { "id": "pollination_efficiency", "label": "Crop Fruit Set & Pollination Index", "type": "outcome" }
+    ],
+    "edges": [
+      { "source": "zero_till", "target": "macro_aggregates", "polarity": "+", "confidence": 0.94, "citation": "FAO CA SOC (2021)" },
+      { "source": "macro_aggregates", "target": "soc_stock", "polarity": "+", "confidence": 0.92, "citation": "FAO CA SOC (2021)" },
+      { "source": "macro_aggregates", "target": "hydraulic_conductivity", "polarity": "+", "confidence": 0.88, "citation": "USDA NRCS Soil Water" },
+      { "source": "hydraulic_conductivity", "target": "crop_resilience", "polarity": "+", "confidence": 0.89, "citation": "USDA NRCS Soil Water" },
+      { "source": "contour_hedges", "target": "erosion_loss", "polarity": "-", "confidence": 0.96, "citation": "IPCC AR6 WGIII Ch. 7" },
+      { "source": "contour_hedges", "target": "hydraulic_conductivity", "polarity": "+", "confidence": 0.85, "citation": "IPCC AR6 WGIII Ch. 7" },
+      { "source": "halophytic_trees", "target": "water_table_depth", "polarity": "+", "confidence": 0.91, "citation": "FAO Salinity Reclamation" },
+      { "source": "water_table_depth", "target": "salinity_stress", "polarity": "-", "confidence": 0.93, "citation": "FAO Salinity Reclamation" },
+      { "source": "riparian_strips", "target": "denitrification_rate", "polarity": "+", "confidence": 0.87, "citation": "FAO IPM Riparian Buffers" },
+      { "source": "riparian_strips", "target": "predator_abundance", "polarity": "+", "confidence": 0.86, "citation": "FAO IPM Riparian Buffers" },
+      { "source": "denitrification_rate", "target": "pesticide_runoff", "polarity": "-", "confidence": 0.90, "citation": "FAO IPM Riparian Buffers" },
+      { "source": "predator_abundance", "target": "crop_resilience", "polarity": "+", "confidence": 0.84, "citation": "FAO IPM Riparian Buffers" },
+      { "source": "biochar_amend", "target": "rhizosphere_mycorrhizae", "polarity": "+", "confidence": 0.89, "citation": "IPCC AR6 Land Degradation" },
+      { "source": "rhizosphere_mycorrhizae", "target": "soc_stock", "polarity": "+", "confidence": 0.95, "citation": "IPCC AR6 Land Degradation" },
+      { "source": "pollinator_corridors", "target": "pollination_efficiency", "polarity": "+", "confidence": 0.96, "citation": "IPBES Pollinator Habitat (2022)" },
+      { "source": "pollination_efficiency", "target": "crop_resilience", "polarity": "+", "confidence": 0.88, "citation": "IPBES Pollinator Habitat (2022)" }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "scenario_saline_pasture",
+      "label": "Saline Degraded Semi-Arid Land",
+      "tag": "Salinity Crisis",
+      "region": "Semi-Arid Drylands (e.g. Gujarat / Rajasthan / Murray-Darling)",
+      "description": "Rising saline water table (EC 5.4 dS/m), low organic carbon (0.5%), shallow root restriction.",
+      "query": "We manage 22 hectares of semi-arid pastoral land experiencing severe salinity scalding and rising groundwater. Water table is high and topsoil EC is 5.4 dS/m. What biodrainage and silvopastoral interventions are recommended?",
+      "params": {
+        "region": "Semi-Arid Drylands",
+        "soilPH": 8.2,
+        "socPercent": 0.52,
+        "salinityEC": 5.4,
+        "slopePercent": 1.8,
+        "annualRainfallMm": 420,
+        "soilTexture": "Clay Loam",
+        "primaryIssue": "Salinization and High Water Table",
+        "acreage": 22,
+        "targetGoal": "Salinity Reclamation & Halophytic Fodder"
+      }
+    },
+    {
+      "id": "scenario_slope_erosion",
+      "label": "Tropical Steep Slope Erosion",
+      "tag": "Erosion & Leaching",
+      "region": "Tropical Sub-Humid Highlands (e.g. Western Ghats / East African Highlands)",
+      "description": "High rainfall (1,350 mm/yr) on 16% slope causing violent sheet wash and topsoil depletion.",
+      "query": "Smallholder coffee and maize farm on a 16% hillside slope in a high-rainfall zone (1350 mm). Monsoons wash away topsoil, leaving severe rills and depleted soil organic matter (0.78%). How can we halt soil erosion and build resilient terraces?",
+      "params": {
+        "region": "Tropical Highlands",
+        "soilPH": 5.4,
+        "socPercent": 0.78,
+        "salinityEC": 0.4,
+        "slopePercent": 16.0,
+        "annualRainfallMm": 1350,
+        "soilTexture": "Sandy Clay",
+        "primaryIssue": "Severe Topsoil Erosion & Leaching",
+        "acreage": 8.5,
+        "targetGoal": "Erosion Prevention & Multi-strata Agroforestry"
+      }
+    },
+    {
+      "id": "scenario_depleted_monoculture",
+      "label": "Intensive Tillage Depleted Carbon",
+      "tag": "SOC Depletion",
+      "region": "Sub-Humid Grain Belt (e.g. Indo-Gangetic Plains / US Midwest)",
+      "description": "Decades of deep moldboard plowing reduced SOC to 0.45%, severe plow-pan compaction at 20 cm.",
+      "query": "Our 45-hectare intensive cereal crop rotation has collapsed in organic carbon (0.45%) with severe tractor compaction pan at 20cm depth. Irrigation infiltration has plummeted to under 6 mm/hr. Recommend a regenerative transition plan.",
+      "params": {
+        "region": "Alluvial Grain Basin",
+        "soilPH": 6.8,
+        "socPercent": 0.45,
+        "salinityEC": 1.1,
+        "slopePercent": 1.2,
+        "annualRainfallMm": 720,
+        "soilTexture": "Silt Loam",
+        "primaryIssue": "Soil Organic Matter Depletion & Compaction",
+        "acreage": 45,
+        "targetGoal": "Conservation Agriculture & Deep Root De-compaction"
+      }
+    },
+    {
+      "id": "scenario_riparian_runoff",
+      "label": "Riparian Zone Agrochemical Runoff",
+      "tag": "Biodiversity & Runoff",
+      "region": "Temperate Watershed Valley",
+      "description": "Intensive horticulture adjacent to freshwater stream causing pesticide drift and nitrate leaching.",
+      "query": "Farmland adjacent to a sensitive river corridor is facing local regulatory scrutiny for nitrate runoff and lack of pollinator habitat. We have 14 hectares with rolling 4% slopes and 880mm rainfall.",
+      "params": {
+        "region": "Temperate Watershed",
+        "soilPH": 6.4,
+        "socPercent": 1.35,
+        "salinityEC": 0.8,
+        "slopePercent": 4.2,
+        "annualRainfallMm": 880,
+        "soilTexture": "Loam",
+        "primaryIssue": "Pesticide Drift & Nitrate Leaching",
+        "acreage": 14,
+        "targetGoal": "Multi-tier Riparian Buffer & Pollinator Corridors"
+      }
+    }
+  ]
+}

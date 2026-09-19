@@ -1,0 +1,6 @@
+{
+  "name": "Darukaa Earth",
+  "description": "Environmental data intelligence and agro-ecological decision support platform with causal graphs, scientific thresholds, and evidence-grounded recommendations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,158 @@
+{
+  "parameters": {
+    "soil_ph": {
+      "unit": "pH",
+      "critical_low": 5.2,
+      "optimal_min": 6.0,
+      "optimal_max": 7.5,
+      "critical_high": 8.5,
+      "risk_label_low": "Strongly acidic; aluminum/manganese toxicity risk, phosphorus fixation",
+      "risk_label_high": "Sodic/alkaline; micronutrient lockout, clay dispersion risk"
+    },
+    "soc_percent": {
+      "unit": "%",
+      "critical_low": 0.6,
+      "moderate_min": 1.2,
+      "optimal_min": 2.0,
+      "risk_label_low": "Severely degraded organic carbon; poor biological activity and low CEC"
+    },
+    "salinity_ec": {
+      "unit": "dS/m",
+      "non_saline_max": 2.0,
+      "slight_max": 4.0,
+      "moderate_max": 8.0,
+      "severe_min": 8.0,
+      "risk_label_high": "High osmotic stress; plant water uptake severely impeded"
+    },
+    "slope_percent": {
+      "unit": "%",
+      "flat_max": 2.0,
+      "gentle_max": 6.0,
+      "moderate_max": 15.0,
+      "steep_min": 15.0,
+      "risk_label_high": "High velocity runoff, extreme rill and gully erosion risk"
+    },
+    "annual_rainfall_mm": {
+      "unit": "mm/yr",
+      "arid_max": 300,
+      "semi_arid_max": 650,
+      "sub_humid_max": 1100,
+      "humid_min": 1100
+    }
+  },
+  "interventions": [
+    {
+      "id": "contour_agroforestry_hedges",
+      "name": "Contour Agroforestry & Alley Cropping",
+      "category": "Erosion & Soil Restoration",
+      "suitability_criteria": {
+        "min_slope": 5.0,
+        "max_salinity": 4.0,
+        "min_rainfall": 400
+      },
+      "contraindications": [
+        "Slopes < 2% (limited erosion control ROI)",
+        "Severe soil salinity (EC > 6.0 dS/m restricts leguminous shrub rooting)"
+      ],
+      "metrics": {
+        "erosion_reduction_pct": 75,
+        "soc_gain_t_ha_yr": 0.65,
+        "water_infiltration_gain_pct": 40
+      },
+      "citations": ["IPCC AR6 WGIII Ch. 7", "FAO Conservation Agriculture"]
+    },
+    {
+      "id": "halophytic_silvopasture_reclamation",
+      "name": "Halophytic Silvopasture & Deep Biodrainage",
+      "category": "Salinity & Sodic Remediation",
+      "suitability_criteria": {
+        "min_salinity": 3.5,
+        "max_rainfall": 900
+      },
+      "contraindications": [
+        "Soils with EC < 2.0 dS/m (overkill, non-halophyte crops more profitable)",
+        "Waterlogged sodic soils without preliminary gypsum leaching"
+      ],
+      "metrics": {
+        "salt_extraction_t_ha_yr": 1.2,
+        "soc_gain_t_ha_yr": 0.42,
+        "forage_yield_increase_pct": 55
+      },
+      "citations": ["FAO Salinity Reclamation Protocols", "USDA NRCS Tech Guide"]
+    },
+    {
+      "id": "conservation_zero_till_cover_crops",
+      "name": "Conservation Agriculture with Multi-Species Cover Cropping",
+      "category": "Carbon & Moisture Optimization",
+      "suitability_criteria": {
+        "max_soc": 1.8,
+        "max_slope": 12.0,
+        "min_rainfall": 350
+      },
+      "contraindications": [
+        "Fields with poorly drained heavy sodic clays without prior aeration",
+        "High weed pressure without planned termination strategy"
+      ],
+      "metrics": {
+        "soc_gain_t_ha_yr": 0.58,
+        "soil_water_retention_liters_ha": 210000,
+        "erosion_reduction_pct": 85
+      },
+      "citations": ["FAO Conservation Agriculture (2021)", "USDA NRCS Soil Water Dynamics"]
+    },
+    {
+      "id": "multi_tier_riparian_pesticide_buffer",
+      "name": "Multi-Tier Native Riparian Buffer Strips",
+      "category": "Biodiversity & Runoff Interception",
+      "suitability_criteria": {
+        "min_rainfall": 450
+      },
+      "contraindications": [
+        "Arid zones with < 250mm annual rainfall without perennial creek flow",
+        "Extreme high alkaline soils (pH > 9.0) without salt-tolerant riparian species"
+      ],
+      "metrics": {
+        "nitrate_reduction_pct": 72,
+        "pest_reduction_pct": 44,
+        "biodiversity_connectivity_gain_pct": 68
+      },
+      "citations": ["FAO IPM Riparian Buffers", "IPBES Pollinator Habitat Assessment"]
+    },
+    {
+      "id": "biochar_microbial_inoculation",
+      "name": "Engineered Biochar with Mycorrhizal Inoculation",
+      "category": "Nutrient Retention & CEC Boost",
+      "suitability_criteria": {
+        "max_soc": 1.5,
+        "max_ph": 7.8
+      },
+      "contraindications": [
+        "Highly alkaline soils (pH > 8.4) when using high-ash alkaline biochar",
+        "Application without microbial/compost pre-activation"
+      ],
+      "metrics": {
+        "cec_increase_pct": 32,
+        "soc_gain_t_ha_yr": 1.4,
+        "fertilizer_efficiency_gain_pct": 28
+      },
+      "citations": ["IPCC AR6 Land Degradation", "FAO Conservation Agriculture"]
+    },
+    {
+      "id": "native_pollinator_corridor_mosaic",
+      "name": "Pollinator Habitat Stepping-Stones & Hedgerows",
+      "category": "Pollination & Agrobiodiversity",
+      "suitability_criteria": {
+        "min_rainfall": 300
+      },
+      "contraindications": [
+        "Continuous high pesticide spray zones without chemical drift protection"
+      ],
+      "metrics": {
+        "fruit_set_increase_pct": 26,
+        "beneficial_invertebrates_gain_pct": 82,
+        "pollinator_visitation_boost_pct": 95
+      },
+      "citations": ["IPBES Pollinator Assessment (2022)", "FAO Agro-ecological Practices"]
+    }
+  ]
+}
